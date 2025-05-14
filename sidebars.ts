@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     'intro',
     'hello',
+    'Juan'
     {
       type: 'category',
       label: 'Tutorial',
