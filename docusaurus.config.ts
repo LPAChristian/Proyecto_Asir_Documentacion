@@ -5,11 +5,11 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const organizationName = "lpachristian";
-const projectName = "docusaurusPrueba";
+const projectName = "Proyecto_Asir_Documentacion";
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Documentación Proyecto ASIR',
+  tagline: 'Que grande ese tio, ¿no?',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
