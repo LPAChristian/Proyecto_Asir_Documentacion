@@ -26,6 +26,7 @@ sidebar_position: 6
 | eno1   | Network Device | Sí | No | No | - | - | - |
 | eno2   | Network Device | No | No | No | - | - | - |
 | vmbr0  | Linux Bridge   | Sí | Sí | No | eno1 | 192.168.52.241/24 | 192.168.52.1 |
+| vmbr1  | Linux Bridge   | Sí | Sí | No | eno1 | - | - |
 
 
 
