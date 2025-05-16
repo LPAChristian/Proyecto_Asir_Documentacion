@@ -72,7 +72,7 @@ services:
     restart: always
 
 ```
-
+---
 ### Creacion del docker-compose de php 
 
 Para comezar con la creación del Docker-Compose de php haremos un directorio raiz llamado `docker-php`.
@@ -124,7 +124,7 @@ services:
     command: --database /database.db
     restart: always
 ```
-
+---
 ### Creación del compose de Laravel
 
 
@@ -200,7 +200,7 @@ Una vez hecho el archivo `docker-compose.yml` ejecutamos el siguiente comando.
 ```
 docker run --rm -v $(pwd)/laravel:/app composer create-project laravel/laravel 
 ```
-
+---
 ### Creación del Docker de Wordpress
 
 
@@ -283,7 +283,7 @@ Una vez creado y configurado los archivos pertinentes crearemos un subdirectorio
 mkdir wordpress
 ```
 
-
+---
 ### Creación del Docker de React-Vite
 
 
