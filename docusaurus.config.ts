@@ -92,11 +92,15 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Proyecto',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Resumen del Proyecto',
               to: '/docs/intro',
+            },
+             {
+              label: 'Instalación',
+              to: 'docs/category/instalaciones',
             },
           ],
         },
@@ -104,8 +108,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Centro',
+              href: 'https://departamentoinformaticajmpp.com/web/',
             },
             {
               label: 'Discord',
@@ -117,21 +121,10 @@ const config: Config = {
             },
           ],
         },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
+        
+          
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Documentación de Proyecto ASIR, Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
