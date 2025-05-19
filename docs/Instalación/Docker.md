@@ -2,56 +2,66 @@
 sidebar_position: 3
 ---
 
-# Docker
+# Instalación Docker Compose
 
-## Documentación de la creación de los Docker-Compose
+Esta guía explica cómo configurar varios entornos de desarrollo utilizando Docker Compose, incluyendo sitios estáticos HTML, PHP, Laravel, WordPress y aplicaciones React-Vite.
 
+## Estructura General
 
-### Estructura general
+Cada servicio requiere su propio directorio con un proceso de configuración similar:
 
-Para cada servicio en Docker se deben crear directorios independientes. En cada uno de ellos, se deben seguir los siguientes pasos:
+1. Crear un directorio raíz para el servicio
+2. Agregar subdirectorios necesarios (`data`, `filebrowser_data`)
+3. Inicializar la base de datos de FileBrowser
+4. Crear un usuario administrador para FileBrowser
+5. Crear un archivo `docker-compose.yml`
+6. Iniciar los servicios
 
-1. Crear las carpetas `data` y `filebrowser_data`.
-2. Inicializar la base de datos para FileBrowser.
-3. Crear el usuario `admin` con la contraseña `admin123`.
+## Pasos Comunes de Configuración
 
----
+Los siguientes pasos son comunes para todos los entornos:
 
-### Creacion del docker-compose de HTML 
+### 1. Crear Base de Datos de FileBrowser
 
-Para comezar con la creación del Docker-Compose de HTML haremos un directorio raiz llamado `docker-estatico`.
-
-```md 
-mkdir -p docker-estastico
-```
-Una vez creado, nos moveremos con `cd` a nuestro directorio raiz, dentro de`\docker-compose` añadiremos los siguientes subdiretorios.
-
-```md 
-mkdir -p filebrowser_data
-mkdir -p data
-```
-
-Continuamos con la creación de una base de datos en filebrowser.
-
-```md 
+```bash
 sudo docker run --rm \
   -v $(pwd)/filebrowser_data:/srv \
   filebrowser/filebrowser \
   config init --database /srv/filebrowser.db
 ```
 
-Ya creada la base de datos, pasaremos con el administrador encargado de la base de datos, al ser una guia de ejemplo usaremos como usuario `admin` y contraseña `admin123`.
+### 2. Crear Usuario Administrador
 
-``` md 
+```bash
 sudo docker run --rm \
   -v $(pwd)/filebrowser_data:/srv \
   filebrowser/filebrowser \
   users add admin admin123 --database /srv/filebrowser.db --perm.admin
 ```
 
-Creamos un archivo llamado `docker-compose.yml` con el siguiente contenido para definir y configurar todos los servicios, redes y base de datos que se necesita.
+## Configuraciones Específicas por Entorno
 
-``` md 
+### 1. Entorno HTML Estático
+
+#### Configuración de Directorios
+
+```bash
+# Crear directorio raíz
+mkdir -p docker-estatico
+
+# Navegar al directorio
+cd docker-estatico
+
+# Crear subdirectorios requeridos
+mkdir -p filebrowser_data
+mkdir -p data
+```
+
+#### Configuración de Docker Compose
+
+Crea un archivo `docker-compose.yml` con el siguiente contenido:
+
+```yaml
 services:
   httpd:
     image: httpd:latest
@@ -70,41 +80,29 @@ services:
       - ./data:/srv
     command: --database /database.db
     restart: always
-
 ```
----
-### Creacion del docker-compose de php 
 
-Para comezar con la creación del Docker-Compose de php haremos un directorio raiz llamado `docker-php`.
-```
+### 2. Entorno PHP
+
+#### Configuración de Directorios
+
+```bash
+# Crear directorio raíz
 mkdir -p docker-php
-```
-Una vez creado, nos moveremos con `cd` a nuestro directorio raiz, dentro de`\docker-php` añadiremos los siguientes subdiretorios.
 
-```md 
+# Navegar al directorio
+cd docker-php
+
+# Crear subdirectorios requeridos
 mkdir -p filebrowser_data
 mkdir -p data
 ```
 
-Continuamos con la creación de una base de datos en filebrowser.
+#### Configuración de Docker Compose
 
-```md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  config init --database /srv/filebrowser.db
-```
+Crea un archivo `docker-compose.yml` con el siguiente contenido:
 
-Ya creada la base de datos, pasaremos con el administrador encargado de la base de datos, al ser una guia de ejemplo usaremos como usuario `admin` y contraseña `admin123`.
-
-``` md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  users add admin admin123 --database /srv/filebrowser.db --perm.admin
-```
-Creamos un archivo llamado `docker-compose.yml` con el siguiente contenido para definir y configurar todos los servicios, redes y base de datos que se necesita.
-```
+```yaml
 services:
   php-apache:
     image: php:8.3-apache
@@ -124,43 +122,28 @@ services:
     command: --database /database.db
     restart: always
 ```
----
-### Creación del compose de Laravel
 
+### 3. Entorno Laravel
 
-Para comezar con la creación del Docker-Compose de Laravel haremos un directorio raiz llamado `docker-laravel`.
+#### Configuración de Directorios
 
-```md 
+```bash
+# Crear directorio raíz
 mkdir -p docker-laravel
-```
-Una vez creado, nos moveremos con `cd` a nuestro directorio raiz, dentro de`\docker-laravel` añadiremos los siguientes subdiretorios.
 
-```md 
+# Navegar al directorio
+cd docker-laravel
+
+# Crear subdirectorios requeridos
 mkdir -p filebrowser_data
 mkdir -p data
 ```
 
-Continuamos con la creación de una base de datos en filebrowser.
+#### Configuración de Docker Compose
 
-```md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  config init --database /srv/filebrowser.db
-```
+Crea un archivo `docker-compose.yml` con el siguiente contenido:
 
-Ya creada la base de datos, pasaremos con el administrador encargado de la base de datos, al ser una guia de ejemplo usaremos como usuario `admin` y contraseña `admin123`.
-
-``` md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  users add admin admin123 --database /srv/filebrowser.db --perm.admin
-```
-
-Creamos un archivo llamado `docker-compose.yml` con el siguiente contenido para definir y configurar todos los servicios, redes y base de datos que se necesita.
-
-``` 
+```yaml
 services:
   laravel:
     image: php:8.3-cli
@@ -192,51 +175,37 @@ services:
       - ./laravel:/srv
     command: --database /database.db
     restart: always
-
 ```
 
-Una vez hecho el archivo `docker-compose.yml` ejecutamos el siguiente comando.
+#### Crear Proyecto Laravel
 
+Después de configurar Docker Compose, crea un nuevo proyecto Laravel:
+
+```bash
+docker run --rm -v $(pwd)/laravel:/app composer create-project laravel/laravel .
 ```
-docker run --rm -v $(pwd)/laravel:/app composer create-project laravel/laravel 
-```
----
-### Creación del Docker de Wordpress
 
+### 4. Entorno WordPress
 
-Para comezar con la creación del Docker-Compose de Wordpress haremos un directorio raiz llamado `docker-wordpress`.
+#### Configuración de Directorios
 
-```md 
+```bash
+# Crear directorio raíz
 mkdir -p docker-wordpress
-```
-Una vez creado, nos moveremos con `cd` a nuestro directorio raiz, dentro de`\docker-wordpress` añadiremos los siguientes subdiretorios.
 
-```md 
+# Navegar al directorio
+cd docker-wordpress
+
+# Crear subdirectorios requeridos
 mkdir -p filebrowser_data
-mkdir -p data
+mkdir -p wordpress
 ```
 
-Continuamos con la creación de una base de datos en filebrowser.
+#### Configuración de Docker Compose
 
-```md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  config init --database /srv/filebrowser.db
-```
+Crea un archivo `docker-compose.yml` con el siguiente contenido:
 
-Ya creada la base de datos, pasaremos con el administrador encargado de la base de datos, al ser una guia de ejemplo usaremos como usuario `admin` y contraseña `admin123`.
-
-``` md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  users add admin admin123 --database /srv/filebrowser.db --perm.admin
-```
-
-Creamos un archivo llamado `docker-compose.yml` con el siguiente contenido para definir y configurar todos los servicios, redes y base de datos que se necesita.
-
-```md 
+```yaml
 services:
   wordpress:
     image: wordpress:latest
@@ -274,52 +243,31 @@ services:
     command: --database /database.db
     restart: always
 
-  volumes:
-      db_data:
+volumes:
+  db_data:
 ```
 
-Una vez creado y configurado los archivos pertinentes crearemos un subdirectorio para instalar el Wordpress
-```
-mkdir wordpress
-```
+### 5. Entorno React-Vite
 
----
-### Creación del Docker de React-Vite
+#### Configuración de Directorios
 
-
-Para comezar con la creación del Docker-Compose de React-Vite haremos un directorio raiz llamado `docker-react`.
-
-```md 
+```bash
+# Crear directorio raíz
 mkdir -p docker-react
-```
-Una vez creado, nos moveremos con `cd` a nuestro directorio raiz, dentro de`\docker-react` añadiremos los siguientes subdiretorios.
 
-```md 
+# Navegar al directorio
+cd docker-react
+
+# Crear subdirectorios requeridos
 mkdir -p filebrowser_data
-mkdir -p data
+mkdir -p react
 ```
 
-Continuamos con la creación de una base de datos en filebrowser.
+#### Configuración de Docker Compose
 
-```md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  config init --database /srv/filebrowser.db
-```
+Crea un archivo `docker-compose.yml` con el siguiente contenido:
 
-Ya creada la base de datos, pasaremos con el administrador encargado de la base de datos, al ser una guia de ejemplo usaremos como usuario `admin` y contraseña `admin123`.
-
-``` md 
-sudo docker run --rm \
-  -v $(pwd)/filebrowser_data:/srv \
-  filebrowser/filebrowser \
-  users add admin admin123 --database /srv/filebrowser.db --perm.admin
-```
-
-Creamos un archivo llamado `docker-compose.yml` con el siguiente contenido para definir y configurar todos los servicios, redes y base de datos que se necesita.
-
-```
+```yaml
 services:
   react-vite:
     image: node:18
@@ -343,14 +291,46 @@ services:
     restart: always
 ```
 
+#### Crear Proyecto React
 
+Inicializa un nuevo proyecto React utilizando Vite:
 
-Con este comando generamos un `projecto vite` dentro del contenedor de Docker, sin necesidad de tener Node.js ni npm instalados en tu sistema operativo local. 
-
-```
+```bash
 docker run -it --rm -v $(pwd)/react:/app -w /app node:18 bash -c "npm create vite@latest . -- --template react && npm install"
 ```
 
+## Ejecutando los Servicios
 
+Para iniciar los servicios, navega al directorio respectivo y ejecuta:
 
+```bash
+docker compose up -d
+```
 
+Para detener los servicios:
+
+```bash
+docker compose down
+```
+
+## Acceso a los Servicios
+
+| Servicio | URL | Descripción |
+|---------|-----|-------------|
+| HTML Estático | http://localhost:8080 | Servidor HTTP Apache |
+| PHP | http://localhost:8080 | PHP con Apache |
+| Laravel | http://localhost:8000 | Aplicación Laravel |
+| WordPress | http://localhost:8082 | CMS WordPress |
+| React-Vite | http://localhost:5173 | React con Vite |
+| FileBrowser | http://localhost:8081 | Interfaz de Gestión de Archivos |
+
+## Credenciales Predeterminadas
+
+Para FileBrowser:
+- Usuario: `admin`
+- Contraseña: `admin123`
+
+Para WordPress:
+- Usuario de Base de Datos: `wordpress`
+- Contraseña de Base de Datos: `wordpress`
+- Contraseña de Root: `root`
