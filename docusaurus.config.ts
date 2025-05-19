@@ -81,7 +81,7 @@ const config: Config = {
             },
              {
               label: 'Instalación',
-              to: 'docs/category/instalaciones',
+              to: 'docs/category/instalación',
             },
           ],
         },

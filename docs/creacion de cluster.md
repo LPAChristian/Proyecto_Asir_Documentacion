@@ -122,7 +122,7 @@ La implementación de un clúster Proxmox proporciona las siguientes ventajas op
 
 ### Limitaciones y Precauciones
 
-* **Punto de No Retorno**: La separación de un nodo del clúster es un proceso complejo; se recomienda reinstalación completa en caso necesario
+* **Punto de No Retorno**: La separación de un nodo del clúster es un proceso complejo; se recomienda reinstalación completa en caso necesarioo
 * **Tiempo de Sincronización**: Para clústeres grandes, permita tiempo suficiente para la sincronización inicial de datos
 * **Máquinas Virtuales Activas**: Asegúrese de que no existan VMs en ejecución en los nodos secundarios antes de unirlos al clúster
 * **Conectividad de Red**: Cualquier interrupción durante el proceso puede dejar los nodos en estado inconsistente
