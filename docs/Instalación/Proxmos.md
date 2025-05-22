@@ -10,6 +10,11 @@ sidebar_position: 6
 
 Esta guía cubre la instalación de Proxmox VE y la creación de máquinas virtuales, con un enfoque especial en la instalación de Windows 11.
 
+### Consideraciones BIOS/UEFI
+
+
+Es crucial instalar Proxmox VE en modo **UEFI**. Las BIOS tradicionales (Legacy) a menudo no son interactivas de la manera que Proxmox requiere durante su instalación, especialmente para la selección de discos y configuración de red avanzada. UEFI proporciona una interfaz más moderna y flexible. Asegúrate de que el modo de arranque en la configuración UEFI/BIOS de cada servidor esté configurado para "UEFI Only" o "UEFI First".
+
 ## Requisitos del Sistema
 
 ### Hardware Recomendado

@@ -82,3 +82,20 @@ Utilice templates para:
 * Reducir tiempo de aprovisionamiento de infraestructura
 
 
+## Identificadores de VM (VM IDs)
+
+
+Se ha establecido la siguiente convención de IDs para las plantillas (y VMs clonadas de ellas) en los nodos:
+
+
+| Nodo | Windows 11 | Windows Server 2025 | Windows Server 2022 | Ubuntu Client | Ubuntu Server | Fedora | RedHat |
+| :--- | :--------- | :-------------------- | :-------------------- | :------------ | :------------ | :----- | :----- |
+| sv1  | 151        | 152                   | 153                   | 154           | 155           | 156    | 157    |
+| sv2  | 251        | 252                   | 253                   | 254           | 255           | 256    | 257    |
+| sv3  | 351        | 352                   | 353                   | 354           | 355           | 356    | 357    |
+| sv4  | 451        | 452                   | 453                   | 454           | 455           | 456    | 457    |
+| sv5  | 551        | 552                   | 553                   | 554           | 555           | 556    | 557    |
+| sv6  | 651        | 652                   | 653                   | 654           | 655           | 656    | 657    |
+| sv7  | 751        | 752                   | 753                   | 754           | 755           | 756    | 757    |
+| sv8  | 851        | 852                   | 853                   | 854           | 855           | 856    | 857    |
+
