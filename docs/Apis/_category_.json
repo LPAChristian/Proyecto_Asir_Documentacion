@@ -1,0 +1,8 @@
+{
+  "label": "APIS",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "En esta sección encontrarás documentación detallada sobre las APIS creadas para este proyecto."
+  }
+}

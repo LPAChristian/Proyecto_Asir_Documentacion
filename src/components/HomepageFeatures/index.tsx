@@ -1,26 +1,25 @@
-import React from 'react';
+import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description:JSX.Element;
+  description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Proyecto ASIR',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Esta documentación está creada para el módulo de Administración de Sistemas Informáticos en Red (ASIR), orientada a facilitar el aprendizaje y consulta.
+        Esta documentación está creada para el módulo 
+        de Administración de Sistemas Informáticos en Red (ASIR), orientada a facilitar el aprendizaje y consulta.
       </>
     ),
   },
   {
     title: 'Automatización de Servicios',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
         El sistema permite desplegar servicios web de forma rápida y sencilla, utilizando tecnologías como Proxmox, Docker y FastAPI.
@@ -29,7 +28,6 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: '100% Open Source',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
         Todos los componentes del proyecto están basados en software libre, fomentando la transparencia, la colaboración y la mejora continua.
@@ -38,21 +36,18 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
       <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
+        <Heading as="h3">{title}</Heading>
         <p>{description}</p>
       </div>
     </div>
   );
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
